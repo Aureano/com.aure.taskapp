@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
-
+use Rules\Password;
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Service;
+
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+
+
+
 class UserController extends Controller
 {
     /**
@@ -13,12 +24,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
-        $users=User::with('roles')->get();
-        return view('admin.gestionuser.index',
-        ['users' => $users,]
-        );
+        $users = User::with('roles')->paginate(4);
+        return view('admin.gestionuser.index',[
+            "users" => $users
+        ]);
     }
 
     /**
@@ -28,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.gestionuser.create');
     }
 
     /**
@@ -37,9 +48,25 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user) :RedirectResponse
     {
-        //
+         $request->validate([
+           'name'=> ['required', 'string', 'max:255'],
+           'email'=>['required','email','string','unique:'.User::class],
+           'password'=>['required']
+
+         ]);
+
+         User::create([
+
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'service_id'=>'1',
+
+        ]);
+        return redirect()->route('admin.users.index')->with('success','Ajout du nouvel utilisateur effectué avec succès');
+
     }
 
     /**
@@ -48,9 +75,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
+
     {
-        //
+
+        return view('admin.gestionuser.show',['user'=>$user]);
     }
 
     /**
@@ -59,9 +88,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user) : View
     {
-        //
+        $services = Service::all();
+        $roles = Role::all();
+        $user->load('roles');
+        // $user->load('roles');
+        return view('admin.gestionuser.edit',
+        ['user'=>$user,
+         'roles'=> $roles,
+         'services'=>$services
+        ]
+    );
     }
 
     /**
@@ -71,10 +109,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(User $user, Request $request)
     {
-        //
+       $request->validate(
+        [
+            'roles'=>['array','exists:roles,id'],
+            'services'=>['required','exists:services,id']
+        ]
+       );
+         $user->roles()->sync($request->input('roles'));
+         $user->service_id = $request->services;
+         $user->save();
+         return redirect()->route('admin.users.index')->with('success','Nouvel utilisateur édité avec succès!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -82,8 +130,54 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('success','Suppression d\'utilisateur éffectué avec succès!');
+
     }
+
+    public function empList()
+    {
+       $empLists = User::whereDoesntHave('roles', function(Builder $query)
+       {
+              $query->whereIn('name',['admin','create']);
+
+       })
+       ->where('service_id',Auth::User()->service_id)
+       ->paginate(3);
+
+       return view('admin.create.empList',compact('empLists'));
+
+    }
+
+    public function createEmpView()
+    {
+        return view('admin.create.createEmp');
+    }
+
+    public function createEmp(Request $request, Role $role)
+    {
+        
+      $request->validate([
+          'name'=> ['required', 'string', 'max:255'],
+          'email'=>['required','email','string','unique:'.User::class],
+          'password'=>['required']
+      ]);
+
+      
+
+      $user = new User;
+      $user->name = $request->name;
+      $user->email = $request->email;
+      $user->password = Hash::make($request->password);
+      $user->service_id = Auth::user()->service_id;
+      $user->save();
+
+      $role = Role::select('id')->where('name','users')->first();
+      $user->roles()->attach($role);
+
+      return redirect()->route('list')->with('success', "Nouvel utilisateur $user->name du service ".Auth::user()->service->nom." créé avec succès");
+
+}
 }

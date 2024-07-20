@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
+use App\Models\Task;
+use App\Models\Service;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'service_id'
     ];
 
     /**
@@ -43,7 +46,38 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles(){
+    public function roles()
+    {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
+    public function isCreate()
+    {
+        return $this->roles()->where('name','create')->exists();
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles()->where('name','admin')->exists();
+    }
+
+    public function manyRoles(array $roles)
+    {
+        return $this->roles()->whereIn('name',$roles)->exists();
+    }
+
+    public function assign_task()
+    {
+        return $this->hasMany(Task::class,'user_created_by');
+    }
+
+    public function assigned_task()
+    {
+        return $this->hasMany(Task::class,'user_assigned_to');
     }
 }
