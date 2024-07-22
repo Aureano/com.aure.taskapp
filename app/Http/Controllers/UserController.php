@@ -62,9 +62,11 @@ class UserController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-            'service_id'=>'1',
+            'service_id'=>1
 
         ]);
+       
+
         return redirect()->route('admin.users.index')->with('success','Ajout du nouvel utilisateur effectué avec succès');
 
     }
@@ -158,14 +160,14 @@ class UserController extends Controller
 
     public function createEmp(Request $request, Role $role)
     {
-        
+
       $request->validate([
           'name'=> ['required', 'string', 'max:255'],
           'email'=>['required','email','string','unique:'.User::class],
           'password'=>['required']
       ]);
 
-      
+
 
       $user = new User;
       $user->name = $request->name;

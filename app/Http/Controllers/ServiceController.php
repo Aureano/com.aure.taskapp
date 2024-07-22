@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -13,7 +14,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::paginate(5);
+        return view('admin.servicess.index',compact('services'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.servicess.create');
     }
 
     /**
@@ -34,7 +36,14 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom'=> ['required','min:3','unique:'.Service::class]
+        ]);
+
+
+          Service::create($request->all());
+
+          return redirect()->route('services.index')->with('success','Nouveau service créé!');
     }
 
     /**

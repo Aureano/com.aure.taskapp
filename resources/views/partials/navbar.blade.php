@@ -202,6 +202,12 @@
                             <i class="fas fa-chart-bar"></i>Gestion du Personnel </a>
                         </li><br>
                         @endcan
+                        @can('admin')
+                        <li>
+                            <a href="{{ route('services.index') }}">
+                            <i class="fas fa-chart-bar"></i>Gestion des services </a>
+                        </li><br>
+                        @endcan
                     </ul>
                 </nav>
             </div>
