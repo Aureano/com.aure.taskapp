@@ -65,7 +65,7 @@ class UserController extends Controller
             'service_id'=>1
 
         ]);
-       
+
 
         return redirect()->route('admin.users.index')->with('success','Ajout du nouvel utilisateur effectué avec succès');
 
@@ -80,8 +80,12 @@ class UserController extends Controller
     public function show(User $user)
 
     {
+        $enAttente = $user->assigned_task->where('status','en attente')->count();
+        $new = $user->assigned_task->where('status','new')->count();
+        $enCours = $user->assigned_task->where('status','en cours')->count();
+        $terminée = $user->assigned_task->where('status','terminée')->count();
 
-        return view('admin.gestionuser.show',['user'=>$user]);
+        return view('admin.gestionuser.show',compact('user','enAttente','new','terminée','enCours'));
     }
 
     /**

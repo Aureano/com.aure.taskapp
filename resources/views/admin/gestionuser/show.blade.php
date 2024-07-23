@@ -47,7 +47,7 @@
                            </div>
                         </div>
 
-                        <div class="bg-white shadow-lg rounded-lg px-4 container">
+                        <div class="bg-white shadow-lg rounded-lg p-4 container">
                          <div class="row">
                             <div class="col-lg-6 d-flex flex-column justify-content-center border border-right-warning">
                                 <h2 class="text-2xl text-blue-500 mb-3">Stastiques</h2>
@@ -74,9 +74,16 @@
 
     </div>
 
-
+     
+    <script>
+        // Définir les variables PHP comme des variables JavaScript
+        var terminée = <?php echo json_encode($terminée); ?>;
+        var enCours = <?php echo json_encode($enCours); ?>;
+        var enAttente = <?php echo json_encode($enAttente); ?>;
+        var newVar = <?php echo json_encode($new); ?>;
+    </script>
     <script src="{{ asset('vendor/Chart/dist/chart.umd.js') }}"></script>
-    <script src="{{ asset('js/charts.js') }}"></script>
+    <script src="{{ asset('js/charts.js') }}" defer></script>
 
     <!-- Jquery JS-->
     <script src="{{ asset('vendor/jquery-3.2.1.min.js') }}"></script>

@@ -1,4 +1,4 @@
-{{-- @dd(Auth::User()->isCreate()); --}}
+ {{-- @dd(Auth::User()->assigned_task); --}}
 
 @php
 use Illuminate\Support\Str;
