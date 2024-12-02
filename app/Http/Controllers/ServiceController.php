@@ -14,7 +14,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::paginate(5);
+        $services = Service::paginate(4);
         return view('admin.servicess.index',compact('services'));
     }
 
@@ -37,11 +37,19 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom'=> ['required','min:3','unique:'.Service::class]
+            'nom'=> ['required','min:3','unique:'.Service::class],
+            'description'=> ['required'],
+            'chef'=> ['required']
         ]);
 
 
-          Service::create($request->all());
+
+
+          Service::create([
+            "nom"=> $request->nom,
+            "description"=> $request->description,
+            "chef"=> $request->chef
+          ]);
 
           return redirect()->route('services.index')->with('success','Nouveau service créé!');
     }
@@ -52,9 +60,9 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Service $service)
     {
-        //
+        return view('admin.servicess.show',compact('service'));
     }
 
     /**
@@ -63,9 +71,9 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Service $service)
     {
-        //
+        return view('admin.servicess.edit',compact('service'));
     }
 
     /**
@@ -75,9 +83,23 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Service $service)
     {
-        //
+        $request->validate([
+            'nom'=> ['required','min:3'],
+            'description'=> ['required'],
+            'chef'=> ['required']
+        ]);
+
+    
+
+        $service->update([
+            "nom"=> $request->nom,
+            "description"=> $request->description,
+            "chef"=> $request->chef
+        ]);
+
+        return redirect()->route('services.index')->with('success',"Un service vient d'être édité!");
     }
 
     /**

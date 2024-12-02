@@ -57,7 +57,7 @@
                                         <td class="font-medium text-black px-6 py-4 " width="425">
                                             <div class="d-flex justify-content-center align-items-center">{{ $new->description }}</div>
                                         </td>
-                                        <td class="font-medium text-black whitespace-nowrap px-6 py-4" >
+                                        <td class="font-medium text-black whitespace-nowrap px-6 py-4">
 
                                            <img src="{{ Storage::url($new->image) }}" alt="">
 
@@ -66,35 +66,6 @@
                                             <a href="{{ route('news.show',["news"=> $new->id ]) }}" class="rounded-md font-bold px-3 py-2 bg-yellow-400 text-white"><i class="fas fa-eye mr-2"></i>Voir</a>
                                             <a href="{{ route('news.edit',["news"=> $new->id ]) }}" class="font-bold bg-blue-500 px-3 py-2 text-white rounded-md hover:none"><i class="fas fa-edit mr-2"></i>Modifier</a>
 
-
-                                             {{-- <button type="button" class="px-3 py-2 rounded-md font-bold bg-red-600 text-white" data-toggle="modal" data-target="#deleteModal">
-                                                Supprimer
-                                            </button>
-
-
-                                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
-                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                      </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                      Êtes-vous sûr de vouloir supprimer cet utilisateur ?d
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                      <form action="{{ route('admin.users.destroy',['user'=>$items->id]) }}" method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                      </form>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div> --}}
 
                                            <form action="" method="POST"></i>
                                               @csrf
@@ -124,13 +95,13 @@
 @empty
 
 @endforelse --}}
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p class="co">Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

@@ -53,18 +53,23 @@ class UserController extends Controller
          $request->validate([
            'name'=> ['required', 'string', 'max:255'],
            'email'=>['required','email','string','unique:'.User::class],
-           'password'=>['required']
+           'password'=>['required'],
+           'poste'=>['min:3', 'max:255']
 
-         ]);
+        ]);
+
+       
 
          User::create([
-
+            
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-            'service_id'=>1
+            'service_id'=>1,
+            'poste'=> $request->poste
+            
 
-        ]);
+    ]);
 
 
         return redirect()->route('admin.users.index')->with('success','Ajout du nouvel utilisateur effectué avec succès');
@@ -168,7 +173,8 @@ class UserController extends Controller
       $request->validate([
           'name'=> ['required', 'string', 'max:255'],
           'email'=>['required','email','string','unique:'.User::class],
-          'password'=>['required']
+          'password'=>['required'],
+          'poste'=>['min:3', 'max:255']
       ]);
 
 
@@ -176,6 +182,7 @@ class UserController extends Controller
       $user = new User;
       $user->name = $request->name;
       $user->email = $request->email;
+      $user->poste = $request->poste;
       $user->password = Hash::make($request->password);
       $user->service_id = Auth::user()->service_id;
       $user->save();

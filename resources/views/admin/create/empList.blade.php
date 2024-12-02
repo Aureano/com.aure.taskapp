@@ -27,22 +27,25 @@
 
 
 
-                        <h1 class="text-3xl text-black-500 mb-3 mt-10"> Membres du service {{ Auth::user()->service->nom }}</h1>
+                        <h1 class="text-3xl text-black-500 mb-5 mt-5"> Membres du service <span class="text-blue-500">{{ Auth::user()->service->nom }}</span></h1>
 
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                             <table class="w-full text-sm text-left text-gray-500">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 text-center border">
                                             Nom
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 text-center border">
                                             Email
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Service
+
+                                        <th scope="col" class="px-6 py-3 text-center border">
+                                            Poste
+                                        
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+
+                                        <th scope="col" class="px-6 py-3 border d-flex justify-center">
                                             Action
                                         </th>
                                     </tr>
@@ -56,11 +59,14 @@
                                             <td class="px-6 py-4 font-medium text-black whitespace-nowrap">
                                                 {{ $empList->email }}
                                             </td>
+
                                             <td class="px-6 py-4 font-medium text-black whitespace-nowrap">
-                                                 {{ $empList->service ? $empList->service->nom : "rien" }}
+                                                {{ $empList->poste }}
                                             </td>
+
+
                                             <td class="px-6 py-4 d-flex justify-around">
-                                                <a href="" class="rounded-md font-bold px-3 py-2 bg-yellow-400 text-white "><i class="fas fa-eye mr-2"></i>Voir</a>
+                                                <a href="{{ route('admin.users.show',["user"=> $empList->id]) }}" class="rounded-md font-bold px-3 py-2 bg-yellow-400 text-white"><i class="fas fa-eye mr-2"></i>Voir</a>
                                                 <a href="" class="font-bold bg-blue-500 px-3 py-2 text-white rounded-md hover:none"><i class="fas fa-edit mr-2"></i>Modifier</a>
 
 
@@ -79,6 +85,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+
                             </table>
                         </div>
 
@@ -89,13 +96,13 @@
                         <a href="/" class="font-medium bg-blue-500 px-4 py-2 text-white rounded-md hover:none">Back</a>
 
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p class="co">Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

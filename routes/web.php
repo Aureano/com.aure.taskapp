@@ -33,6 +33,7 @@ Route::
         Route::get('/',[ActualiteController::class,'accShow'])->name('accueil')->middleware('auth');
         Route::get('/employeeList',[UserController::class,'empList'])->name('list');
         Route::get('/employeeList/create',[UserController::class,'createEmpView'])->name('createEmpView');
+        Route::get('/dash',[UserController::class, 'dash'])->name('dash');
         Route::post('/employeeList',[UserController::class,'createEmp'])->name('createEmp');
         Route::resource('news',ActualiteController::class);
         Route::resource('tasks',TaskController::class);

@@ -8,57 +8,35 @@
 
 
 
-                        <h1 class="text-3xl text-black-500 mb-3 mt-10">Informations de l'utilisateur</h1>
+                        <h1 class="text-3xl text-black-500 mb-3 mt-10">Informations du service</h1>
 
                         <div class="bg-white shadow-lg px-4 py-6 rounded-md mb-1">
                            <div class="form-group">
-                            <label for="">Nom courant de l'utilisateur:</label><br><br>
-                            {{$user->name}}
+                            <label for="">Service</label><br><br>
+                            {{$service->nom}}
                             <div class="divider">
 
                             </div>
                            </div>
                            <div class="form-group">
-                            <label for="">Email courant de l'utilisateur:</label><br><br>
-                            {{$user->email}}
+                            <label for="">Description</label><br><br>
+                            {{ $service->description }}
                             <div class="divider">
 
                             </div>
                            </div>
                            <div class="form-group">
-                            <label for="">Rôle de l'utilisateur:</label><br><br>
-                           @foreach ($user->roles as $role)
-                           {{ $role->name === 'create' ? 'Chef Service' : $role->name }}
-                           @endforeach
+                            <label for="">Chef</label><br><br>
+                           {{$service->chef}}
                             <div class="divider">
 
                             </div>
                            </div><br>
 
-                           <div class="container-fluid p-0 d-flex justify-content-center">
 
-                            <div class="col-lg-6 p-0">
-                                <h1 class="text-xl text-blue-600 font-medium">En fonction {{ $user->created_at->diffForHumans() }} au service {{ $user->service->nom }}</h1>
-                            </div>
-                            <div class="socials__links d-flex gap-2 align-items-center col-lg-6 p-0">
-                                <i class="fab fa-whatsapp-square" style="color: green; font-size: 30px"></i>+229 95530395
-                            </div>
-
-                           </div>
                         </div>
 
-                        <div class="bg-white shadow-lg rounded-lg p-4 container">
-                         <div class="row">
-                            <div class="col-lg-6 d-flex flex-column justify-content-center border border-right-warning">
-                                <h2 class="text-2xl text-blue-500 mb-3">Stastiques</h2>
-                                <p>Visionnez ici les stats de l'employé {{ $user->name  }}</p>
-                            </div>
 
-                             <div class="col-lg-6">
-                                <canvas id="myPieChart" width="230" height="290"></canvas>
-                             </div>
-                         </div>
-                        </div>
 
 
 
@@ -75,13 +53,7 @@
     </div>
 
 
-    <script>
-        // Définir les variables PHP comme des variables JavaScript
-        var terminée = <?php echo json_encode($terminée); ?>;
-        var enCours = <?php echo json_encode($enCours); ?>;
-        var enAttente = <?php echo json_encode($enAttente); ?>;
-        var newVar = <?php echo json_encode($new); ?>;
-    </script>
+
     <script src="{{ asset('vendor/Chart/dist/chart.umd.js') }}"></script>
     <script src="{{ asset('js/charts.js') }}" defer></script>
 

@@ -17,7 +17,7 @@
 
 
 
-                        <h1 class="text-3xl text-black-500 mb-3 mt-10">Attribuer une tâche</h1>
+                        <h1 class="text-3xl text-black-500 mb-3 mt-10">Assignataire de la tâche</h1>
 
                         <div class="bg-white shadow-lg px-4 py-6 rounded-md">
                             <form action="{{ route('tasks.assign',['task'=>$task->id]) }}" method="POST">
@@ -59,13 +59,13 @@
 
 
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

@@ -18,6 +18,13 @@ class Role extends Model
         return $this->belongsToMany(User::class);
     }
 
+    // public function getNameAttribute($value)
+    // {
+
+    //     return $value === 'create' ? 'Chef Service' : $value;
+
+    // }
+
     private $color = [
       'admin'=>'bg-blue-500',
       'create'=>'bg-green-500',
@@ -30,5 +37,5 @@ class Role extends Model
         return $this->color[$this->name];
     }
 
-    
+
 }

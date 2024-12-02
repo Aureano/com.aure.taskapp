@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
                     <div class="container-fluid ">
 
                         <div class="alert alert-primary alert-dismissible fade show">
-                            <p>Bienvenue  {{ Auth::user()->name }} du service {{ Auth::user()->service->nom }} !</p>
+                            <p>Bienvenue  {{ Auth::user()->name }} du service {{ Auth::user()->service->nom }} </p>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -35,7 +35,7 @@ use Illuminate\Support\Str;
                                    <div class="mb-2">
                                     <img src="{{ Storage::url($new->image) }}" class="rounded-lg">
                                    </div>
-                                    <div class="mb-2 px-2">{{ Str::limit($new->description, 95 , '...') }}</div>
+                                    <div class="text-sm mb-2 px-2">{{ Str::limit($new->description, 95 , '...') }}</div>
 
                                         <div class="flex justify-around items-center">
                                             <p class="text-sm text-blue-600 ">Publié {{$new->created_at->diffForHumans()}}</p>

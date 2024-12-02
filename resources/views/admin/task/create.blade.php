@@ -16,9 +16,9 @@
                             <form method="POST" action="{{route('tasks.store')}}">
                                 @csrf
                                 <div class="mb-6">
-                                    <label for="title" class="block mb-2 text-sm font-medium text-gray-700 ">Titre de la tâche</label>
+                                    <label for="title" class="block mb-2 text-sm font-medium text-gray-700 ">Assignataire de tâche</label>
                                     <input type="text" value="{{ old('name') }}" name="name" id="name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                       @error('name') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror" placeholder="Titre de la tâche">
+                                       @error('name') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror" placeholder="Assignataire de tâche">
                                     @error('name')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{$message}} </p>
                                     @enderror
@@ -64,13 +64,13 @@
 
 
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

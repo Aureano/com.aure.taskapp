@@ -8,34 +8,34 @@
 
 
                      <div class="rounded-lg shadow-md bg-white p-7">
-                        <h1 class="text-2xl text-orange-500 mb-3 mt-10">Ajouter un service</h1>
-                        <form action="{{ route('services.store') }}" method="POST">
+                        <h1 class="text-2xl text-blue-500 mb-3 mt-10">Editer un service</h1>
+                        <form action="{{route('services.update',['service'=>$service->id])}}" method="POST">
                             @csrf
-                            @method('post')
+                            @method('put')
                             <div class="mb-3">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Service</label>
-                                <input type="text" value="" name="nom" id="name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5" placeholder="Entrez un nom de service..">
+                                <input type="text" value="{{ $service->nom }}" name="nom" id="name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5" placeholder="Entrez un nom de service..">
                                 @error('nom')
-                                <p class="mt-2 text-sm text-red-600"><span class="font-medium">Oops!</span> {{$message}} </p>
+                                <p class="mt-2 text-sm text-red-600"><span class="font-medium">Oops!</span> {{ $message }} </p>
                                 @enderror
                             </div>
 
                             <div class="mb-3">
                                  <label for="description" class="block mb-2 text-sm text-gray-700 font-medium ">Description</label>
-                                 <input type="text" value="" name="description" class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue p-2.5" placeholder="Décrivez ici le service...">
+                                 <input type="text" value="{{ $service->description }}" name="description" class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue p-2.5" placeholder="Décrivez ici le service...">
                                 @error('description')
                                  <p class="mt-2 text-sm text-red-600"><span>Oops!</span>{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="chef" class="block mb-2 text-sm text-gray-700 font-medium ">Chef</label>
-                                <input type="text" value="" name="chef" class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue p-2.5" placeholder="Décrivez ici le service...">
+                                <input type="text" value="{{ $service->chef }}" name="chef" class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue p-2.5" placeholder="Décrivez ici le service...">
                                @error('chef')
                                 <p class="mt-2 text-sm text-red-600"><span>Oops!</span>{{ $message }}</p>
                                @enderror
                            </div>
 
-                            <button type="submit" class="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-950 text-white">Envoyer</button>
+                            <button type="submit" class="px-3 py-2 rounded-md bg-blue-700 text-white">Envoyer</button>
                         </form>
                      </div>
 

@@ -23,10 +23,6 @@
             @endif
 
 
-
-
-
-
                         <h1 class="text-3xl text-black-500 mb-3 mt-10">Liste des utilisateurs</h1>
 
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -46,13 +42,16 @@
                                             Service
                                         </th>
                                         <th scope="col" class="px-6 py-3">
+                                            Poste
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-center">
                                             Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $items)
-                                        <tr class="bg-white border-b green:bg-gray-900 ">
+                                        <tr class="bg-white border-b green:bg-gray-900">
                                             <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap ">
                                                 {{ $items->name }}
                                             </th>
@@ -61,51 +60,44 @@
                                             </td>
                                             <td class="px-6 py-4 font-medium text-black whitespace-nowrap">
                                                 @foreach ($items->roles as $role)
-                                                    <span class="badge text-white {{ $role->colorRoles() }}"> {{ $role->name }}</span>
+                                                    <span class="badge text-white {{ $role->colorRoles() }}"> {{ $role->name === 'create' ? 'Chef Service' : $role->name }}</span>
                                                 @endforeach
                                             </td>
                                             <td class="px-6 py-4 font-medium text-black whitespace-nowrap">
                                                 {{  $items->service ? $items->service->nom : "rien" }}
                                             </td>
-                                            <td class="px-6 py-4 d-flex justify-around">
-                                                <a href="{{ route('admin.users.show',["user"=> $items->id]) }}" class="rounded-md font-bold px-3 py-2 bg-yellow-400 text-white "><i class="fas fa-eye mr-2"></i>Voir</a>
-                                                <a href="{{ route('admin.users.edit',["user"=> $items->id]) }}" class="font-bold bg-blue-500 px-3 py-2 text-white rounded-md hover:none"><i class="fas fa-edit mr-2"></i>Modifier</a>
+                                            <td class="px-6 py-4 font-medium text-black whitespace-nowrap">
+                                                {{  $items->poste }}
+                                            </td>
+                                            <td class="">
+
+                                                   <div class="text-center">
+                                                    <a href="{{ route('admin.users.show',["user"=> $items->id]) }}" class="rounded-md font-bold px-3 py-2 bg-yellow-400 text-white "><i class="fas fa-eye mr-2"></i>Voir</a>
+                                                    <a href="{{ route('admin.users.edit',["user"=> $items->id]) }}" class="font-bold bg-blue-500 px-3 py-2 text-white rounded-md hover:none"><i class="fas fa-edit mr-2"></i>Modifier</a>
 
 
-                                                 <button type="button" class="px-3 py-2 rounded-md font-bold bg-red-600 text-white" data-toggle="modal" data-target="#deleteModal">
-                                                    Supprimer
-                                                </button>
+                                                    <button type="button" class="px-3 py-2 rounded-md font-bold bg-red-600 text-white" data-bs-toggle="modal" data-bs-target="#mediumModal">
+                                                        Supprimer
+                                                    </button>
 
-
-                                                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                      <div class="modal-content">
-                                                        <div class="modal-header">
-                                                          <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
-                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                          </button>
+                                                    {{-- <div class="modal fade" id="mediumModal" tabindex="-1">
+                                                        <div class="modal-dialog">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title">Modal title</h5>
+                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                              <p>Modal body text goes here.</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                              <button type="button" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                          </div>
                                                         </div>
-                                                        <div class="modal-body">
-                                                          Êtes-vous sûr de vouloir supprimer cet utilisateur ?d
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                          <form action="{{ route('admin.users.destroy',['user'=>$items->id]) }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                          </form>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-
-                                                {{-- <form action="{{ route('admin.users.destroy',['user'=>$items->id]) }}" method="POST"></i>
-                                                  @csrf
-                                                  @method('delete')
-                                                  <button type="submit" class="px-3 py-2 rounded-md font-bold bg-red-600 text-white ">Supprimmer</button>
-                                                </form> --}}
+                                                      </div> --}}
+                                                   </div>
 
 
                                             </td>
@@ -123,13 +115,13 @@
                         <a href="/" class="font-medium bg-blue-500 px-4 py-2 text-white rounded-md hover:none">Back</a>
 
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p class="co">Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -158,8 +150,10 @@
    <script src="{{ asset('vendor/circle-progress/circle-progress.min.js') }}"></script>
    <script src="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
    <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
-   <script src="{{ asset('vendor/select2/select2.min.js') }}">
-   </script>
+   <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
    <!-- Main JS-->
@@ -173,18 +167,7 @@
       padding: 4px;
     }
 
-    .modal
-    {
-    z-index: 1050 !important;
-    }
 
-.modal-backdrop {
-    z-index: 1040 !important;
-}
-
-.modal-dialog {
-    z-index: 1060 !important;
-}
    </style>
 
 </body>

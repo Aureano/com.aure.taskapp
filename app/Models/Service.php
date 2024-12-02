@@ -12,7 +12,7 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable = [
-         'nom','created_at','updated_at'
+         'nom','description','chef','created_at','updated_at'
     ];
 
     public function users()

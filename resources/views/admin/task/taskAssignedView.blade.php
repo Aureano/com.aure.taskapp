@@ -8,11 +8,11 @@
                         <div class="bg-white p-3 rounded-md hover:rounded-lg shadow-lg">
 
 
-                            <p class="text-3xl text-black-500 font-bold mb-3 mt-10">Titre de la tâche</p>
+                            <p class="text-3xl text-black-500 font-bold mb-3 mt-10">Assignataire de la tâche</p>
 
 
 
-                            <p class="text-3xl font-medium">{{ $task->name }}</p>
+                            <p class="text-xl font-medium text-black">{{ $task->name }}</p>
 
                             <div class="divider mb-5"></div>
 
@@ -20,13 +20,13 @@
 
                             <div class="mb-5 ">
 
-                                <p class="text-3xl text-black-600 font-bold mb-4">Détail de la tâche</p>
+                                <p class="text-3xl text-black-600 font-medium mb-4">Détail de la tâche</p>
 
-                                <p class="">{{ $task->description }}</p>
+                                <p class="text-black">{{ $task->description }}</p>
                                 <div class="divider mb-12"></div>
-                                <p class="text-xl text-black-600 font-bold mb-12">Status: <span class="text-blue-500">{{ $task->status }}</span></p>
+                                <p class="text-xl text-black-600 mb-12">Status: <span class="text-blue-700">{{ $task->status }}</span></p>
                                 <p class="text-xl font-bold">Commentaires:</p>
-                                <p class="">{{ $task->comments }}</p>
+                                <p class="text-black">{{ $task->comments }}</p>
 
                                     <div class="text-blue-500 flex justify-end">
                                         <span>Publié par
@@ -44,7 +44,7 @@
                            </div>
 
 
-                            <a href="{{ route('tasks.index') }}" class="px-4 py-2.5 rounded-md shadow-md bg-red-500 hover:bg-red-600 text-white font-medium">Retour</a>
+                            <a href="{{ route('tasks.index') }}" class="px-4 py-2.5 rounded-md shadow-md bg-red-600 hover:bg-red-500 text-white font-medium">Retour</a>
 
 
                         </div>
@@ -62,13 +62,13 @@
 
 
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

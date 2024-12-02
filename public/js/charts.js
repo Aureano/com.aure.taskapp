@@ -1,15 +1,15 @@
 var ctx = document.getElementById('myPieChart').getContext('2d');
-       
-    
+
+
 
 
     var myPieChart = new Chart(ctx, {
     type: 'doughnut', // Type de graphique (camembert)
     data: {
-        labels: ['Terminée', 'En cours', 'En attente', 'New'], // Étiquettes des données
+        labels: ['Terminée', 'En cours', 'En attente'], // Étiquettes des données
         datasets: [{
             label: '# of Votes', // Label de la légende
-            data: [terminée, enCours, enAttente, newVar], // Données du graphique
+            data: [terminée, enCours, enAttente], // Données du graphique
             backgroundColor: [ // Couleurs de fond des segments
                 'rgba(255, 99, 132)',
                 'rgba(54, 162, 235, 1)',

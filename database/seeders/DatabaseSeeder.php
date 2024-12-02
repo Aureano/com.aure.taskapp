@@ -31,19 +31,27 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Service::create([
-             'nom'=>'Comptablité'
+             'nom'=>'Comptablité',
+             'description'=>'Ici, on se consacre à la gestion des entrées/sorties de la société.' ,
+             'chef'=>'Mr Jordan ATINDEHOU'
         ]);
-        
+
         Service::create([
-            'nom'=>'Informatique'
+            'nom'=>'Informatique',
+            'description'=>'Ici, on se consacre à la conception ou la mise en place de solutions informatiques des entrées/sorties de la société.',
+            'chef'=>'Mme Sarah FANOU'
        ]);
 
        Service::create([
-            'nom'=>'Marketing'
+            'nom'=>'Marketing',
+            'description'=>"Ici, on se consacre à la prise d'informations et à la recherche de contrats ou de marchés pour la société.",
+            'chef'=>'Mr Daniel ALOUKO'
        ]);
 
        Service::create([
-        'nom'=>'Direction Générale'
+        'nom'=>'Direction Générale',
+        'description'=>'Ici, se situe la base même de la société. En gros la direction chargé de veiller à la bonne marche de la société',
+        'chef'=>'Mr Maurice Comlan'
        ]);
 
         $admin= User::create([
@@ -69,7 +77,7 @@ class DatabaseSeeder extends Seeder
         $admin->roles()->attach([1,2]);
         $create->roles()->attach([2]);
         $user->roles()->attach([3]);
-        
+
 
     }
 }

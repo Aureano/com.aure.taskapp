@@ -20,6 +20,7 @@
                     </div>
                     <div class="col-lg-6 p-0">
                           <img src="{{ Storage::url($news->image) }}" alt="" style="width: 100%;object-fit:cover; height:385px">
+                          
                     </div>
                 </div>
             </div>
@@ -36,13 +37,13 @@
 
 
 
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-12">
         <div class="copyright">
             <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
         </div>
     </div>
-</div>
+</div> --}}
 </div>
 </div>
 </div>

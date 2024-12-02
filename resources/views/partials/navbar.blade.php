@@ -28,6 +28,8 @@
 
     <!-- Bootstrap CSS-->
     <link href="{{ asset('vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"> --}}
+
 
 
     <!-- Vendor CSS-->
@@ -53,7 +55,7 @@
                     <div class="header-mobile-inner">
                         <div class="d-flex align-items-center logoab">
                     {{-- <img src="{{ asset('images/icon/4.png') }}" alt="AppTasks" width="55px" height="50px" /> --}}
-                    <h1>Task <span style="color: green">App</span></h1>
+                    <h1>Task <span style="color: orange">App</span></h1>
                         </div>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -220,11 +222,11 @@
             <header class="header-desktop">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="header-wrap d-flex justify-content-end border border-gray-600">
+                        <div class="header-wrap d-flex justify-content-end">
 
 
 
-                            <ul class="border border-gray-600">
+                            <ul class="">
                                 <li class="pr-5">
                                     <div class="relative">
                                         <div class="absolute left-0 top-0 bg-red-500 rounded-full">
@@ -334,25 +336,25 @@
 
                 .logoab::before
                 {
-                   content: '';
+                   /* content: '';
                    position: absolute;
                    width:50px;
                    height:30px;
                    top: -14px;
                    left:-12px;
                    border-top:8px solid yellow;
-                   border-left:8px solid yellow;
+                   border-left:8px solid yellow; */
                 }
                 .logoab::after
                 {
-                   content: '';
+                   /* content: '';
                    position: absolute;
                    width:50px;
                    height:30px;
                    bottom:-14px;
                    right:-12px;
                    border-bottom:8px solid rgb(68, 62, 62);
-                   border-right:8px solid rgb(68, 62, 62);
+                   border-right:8px solid rgb(68, 62, 62); */
                 }
             </style>
             <!-- HEADER DESKTOP-->

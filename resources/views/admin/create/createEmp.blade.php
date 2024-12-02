@@ -34,6 +34,14 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-5">
+                                <label for="poste" class="form-label">Poste</label>
+                                 <input type="text" value="" name="poste" id="poste" class="form-control" placeholder="Poste occupé...">
+                                @error('poste')
+                                <p class="mt-2 text-sm text-red-600"><span class="font-medium">Oops!</span> {{$message}} </p>
+                                @enderror
+                            </div>
+
                             <button type="submit" class="px-3 py-2 rounded-md bg-blue-700 text-white">Envoyer</button>
                         </form>
                      </div>
@@ -51,13 +59,13 @@
 
 
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p class="co">Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

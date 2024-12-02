@@ -45,7 +45,7 @@ class ActualiteController extends Controller
      ]);
 
       $filename = time().'.'.$request->image->extension();
-    //    dd($filename);
+
 
      $path = $request->image->storeAs(
                    'avatar',
@@ -53,7 +53,7 @@ class ActualiteController extends Controller
                    'public'
                    );
 
-                //    dd($path);
+                    
 
                 Actualite::create([
                     'title'=>$request->nom,
@@ -111,9 +111,9 @@ class ActualiteController extends Controller
 
         ]);
 
-        dd($request->all());
+
         $filename = time().'.'.$request->image->extension();
-        //    dd($filename);
+
 
          $path = $request->image->storeAs(
                        'avatar',
@@ -121,7 +121,7 @@ class ActualiteController extends Controller
                        'public'
                        );
 
-                       // dd($path);
+
 
             $news->update([
                 'title'=>$request->nom,

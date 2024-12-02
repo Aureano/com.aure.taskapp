@@ -21,19 +21,19 @@
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6 py-3 text-center">
                                 Name
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Content
+                            <th scope="col" class="px-6 py-3 text-center">
+                                Description
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6 py-3 text-center">
                                 Status
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6 py-3 text-center">
                                 Commentaires
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6 py-3 text-center">
                                 Action
                             </th>
 
@@ -42,35 +42,32 @@
                     <tbody>
                         @forelse ($tasks as $task)
                         <tr class="bg-white border-b white:bg-gray-900 ">
-                            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">
+                            <td scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">
                                 {{ $task->name }}
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">
+                            </td>
+                            <td width="150" class="font-medium text-black text-center items-center">
 
                                 {{ $task->description }}
 
-                            </th>
+                            </td>
 
-                            <td class="px-6 py-4">
+                            <td class="text-center">
                               <span class="badge text-white {{ $task->colorStatus() }}">{{ $task->status }}</span>
                             </td>
-                            <td class="">
+                            <td class="text-center font-medium text-black">
                                 {{-- <a href="#" class="font-medium bg-blue-500 px-2 py-2 text-white rounded-md"> </a> --}}
-                                <div class="d-flex justify-content-center align-items-center">{{ $task->comments }}</div>
+                                {{ $task->comments }}
                             </td>
-                            <td width="350" class="py-4 d-flex justify-around">
+                            <td class=" text-center">
                                 @if ($task->statusOn())
                                 <a href="{{ route('tasks.assignedView',['task'=>$task->id]) }}" class="font-medium bg-green-500 px-2 py-2 text-white rounded-md">Attribuer</a>
                                 @endif
-                                {{-- <a href="{{ route('tasks.destroy',['task'=>$task->id]) }}" class="font-medium bg-red-500 px-2 py2 text-white rounded-md  hover:underline">Remove</a> --}}
                                 <a href="{{ route('tasks.show',['task'=>$task->id]) }}" class="font-medium bg-yellow-500 px-2 py-2 text-white rounded-md"><i class="fas fa-eye mr-2"></i>Voir</a>
                                 <a href="{{ route('tasks.edit',['task'=>$task->id]) }}" class="font-medium bg-blue-500 px-2 py-2 text-white rounded-md"><i class="fas fa-edit mr-2"></i>Editer</a>
-
-                                <form action="{{ route('tasks.destroy',['task'=>$task->id]) }}" method="POST"></i>
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="px-1 py-2 rounded-md font-bold bg-red-600 text-white">Supprimmer</button>
-                                </form>
+                                {{-- <a href="{{ route('tasks.destroy',['task'=>$task->id]) }}" class="font-medium bg-red-500 px-2 py2 text-white rounded-md  hover:underline">Remove</a> --}}
+  
+                                <button type="submit" class="px-1 py-2 rounded-md font-bold bg-red-600 text-white">Supprimer</button>
+                                
 
                             </td>
                         </tr>
@@ -97,13 +94,13 @@
 
 
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p class="co">Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
